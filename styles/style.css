@@ -25,8 +25,8 @@ body {
   min-height: 100%;
   width: 100%;
 
-  /* background: #202235; */
-  background-image: linear-gradient(to bottom, #4a4e5f, #444857, #3f434f, #3a3d48, #353840);
+  background: #353840;
+  /* background-image: linear-gradient(to bottom, #4a4e5f, #444857, #3f434f, #3a3d48, #353840); */
 
 
   color: #fff;

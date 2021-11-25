@@ -8,12 +8,9 @@
 
 .news-ul {
   list-style: none;
-  height: 590px;
-  overflow-y: scroll;
 }
 
 .news-ul li {
-  /* border-top: 1px solid #534d4d; */
   padding: 10px;
   padding-top: 20px;
   margin-bottom: 20px;
@@ -48,7 +45,7 @@
 
 .description {
   color: rgb(170, 167, 197);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .pubDate {

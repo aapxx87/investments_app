@@ -15,12 +15,13 @@
 
 .container-portfolio-quotes {
   display: block;
+  padding-bottom: 20px;
 }
 
 
 .container-portfolio-news {
   display: none;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 
 .container-select-stock {
