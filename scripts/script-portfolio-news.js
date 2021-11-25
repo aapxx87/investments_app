@@ -1,7 +1,7 @@
 const newsUl = document.querySelector('.news-ul')
 const btnSearchNews = document.querySelector('.btn-search-news')
 const stockSelector = document.querySelector('.select-stock-input')
-const stockTitle = document.querySelector('.stock-title')
+// const stockTitle = document.querySelector('.stock-title')
 
 
 
@@ -33,7 +33,7 @@ const rapidAPIStockNews = async function (ticker) {
       <li>
         <p class="title">${el.title}</p>
         <p class="description">${el.description}</p>
-        <p class="pubDate">${el.pubDate}</p>
+        <p class="pubDate">${el.pubDate.slice(0, -14)}</p>
         <p class="link">
           <a href="${el.link}"
             target="blank">Read &#8594</a>
@@ -62,9 +62,8 @@ btnSearchNews.addEventListener('click', function () {
   rapidAPIStockNews(stockSelector.value)
 
 
-  stockTitle.textContent = stockSelector.value
+  // stockTitle.textContent = stockSelector.value
 
-  console.log(stockTitle);
 
 
 })
