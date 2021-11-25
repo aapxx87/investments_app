@@ -31,8 +31,9 @@
 }
 
 .quote-ul li {
-  background-color: #41444e;
-  border-radius: 5px;
+  /* background-color: #41444e; */
+  /* border-radius: 5px;
+  border: 1px solid #41444e; */
 }
 
 
@@ -42,6 +43,8 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #41444e;
 }
 
 .stock-data, .stock-price {
