@@ -1,0 +1,100 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #282E3F;
+  color: #fff;
+}
+
+
+
+/* главный контейнер */
+.container-main {
+  /* margin-top: 40px;
+  margin-left: 20px; */
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+
+
+/* Контейнер с Заголовком по суммарным балансам */
+.total-balances {
+  max-width: 230px;
+  margin: 40px auto;
+}
+
+.start-current-balance, .pnl-box {
+  display: flex;
+  justify-content: space-around;
+}
+
+.start-current-balance {
+  display: flex;
+  align-items: center;
+}
+
+.totalSumStart {
+  font-size: 16px;
+  color: rgb(189, 186, 186);
+}
+
+.totalSumLast {
+  font-size: 20px;
+}
+
+
+/* Контейнер для детализации инфы по бумаге */
+.quote-ul {
+  list-style: none;
+}
+
+
+.quote-box {
+  border-bottom: 1px solid rgb(129, 129, 129);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.stock-data, .stock-price {
+  width: 50%;
+  padding: 7px;
+}
+
+.stock-price {
+  text-align: right;
+}
+
+.stock-name, .stock-total-sum-price {
+  margin-bottom: 7px;
+}
+
+.stock-amount, .stock-price-delta {
+  color: rgb(179, 179, 179);
+}
+
+/* стили красным если минус */
+.loss .stock-amount span {
+  color: rgb(243, 109, 109);
+}
+
+.loss .stock-price-delta span {
+  color: rgb(243, 109, 109);
+}
+
+
+/* стили зеленым если плюс */
+.profit .stock-amount span {
+  color: rgb(83, 233, 158);
+}
+
+.profit .stock-price-delta span {
+  color: rgb(83, 233, 158);
+}
+
+
+
