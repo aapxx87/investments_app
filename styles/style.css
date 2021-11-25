@@ -2,7 +2,16 @@
 @import url('porfolio-quotes.css');
 @import url('portfolio-news.css');
 
+/* html {
+  background: linear-gradient(#4B4453, #7C7484);
+  
+} */
 
+html {
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+}
 
 * {
   padding: 0;
@@ -11,7 +20,12 @@
 }
 
 body {
-  background: black;
+  margin: 0px;
+  min-height: 100%;
+  width: 100%;
+
+  background: #202235;
+
   color: #fff;
 }
 

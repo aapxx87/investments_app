@@ -306,7 +306,7 @@ const getInstrumentsPricecAsync = async function (arr) {
 
 
 
-getInstrumentsPricecAsync(['nvda', 'rblx', 'aapl', 'fxit.me', 'yndx.me', 'tcsg.me', 'mtch', 'fb', 'u'])
+// getInstrumentsPricecAsync(['nvda', 'rblx', 'aapl', 'fxit.me', 'yndx.me', 'tcsg.me', 'mtch', 'fb', 'u'])
 
 
 

@@ -64,6 +64,8 @@ btnSearchNews.addEventListener('click', function () {
 
   stockTitle.textContent = stockSelector.value
 
+  console.log(stockTitle);
+
 
 })
 
