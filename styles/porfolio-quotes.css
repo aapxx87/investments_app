@@ -13,6 +13,7 @@
 .start-current-balance {
   display: flex;
   align-items: center;
+  margin-bottom: 5px;
 }
 
 .totalSumStart {
@@ -22,6 +23,10 @@
 
 .totalSumLast {
   font-size: 20px;
+}
+
+.pnl-box {
+  color: rgb(189, 186, 186);
 }
 
 

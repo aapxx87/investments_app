@@ -6,6 +6,11 @@ const totalSumLast = document.querySelector('.totalSumLast')
 const totalSumStart = document.querySelector('.totalSumStart')
 
 
+const totalDelta = document.querySelector('.pnl-total')
+const totalDeltaProcent = document.querySelector('.pnl-percent')
+
+
+
 
 // ----- Stock part
 const investmentPortfolio = [
@@ -225,6 +230,10 @@ const getInstrumentsPricecAsync = async function (arr) {
 
       }
 
+      totalDelta.textContent = new Intl.NumberFormat('ru-RU').format(totalInvestmentsSum - totalInvestmentsSumStart)
+
+      totalDeltaProcent.textContent = `(${((totalInvestmentsSum - totalInvestmentsSumStart) / (totalInvestmentsSumStart / 100)).toFixed(0)}%)`
+
 
     } else if (currentStock[0].currency === 'rub') {
 
@@ -237,11 +246,11 @@ const getInstrumentsPricecAsync = async function (arr) {
         return acc + cur
       }, 0).toFixed(2)
 
-      totalSumStart.textContent = new Intl.NumberFormat('ru-RU').format(totalInvestmentsSumStart)
+      totalSumStart.textContent = new Intl.NumberFormat('ru-RU').format(totalInvestmentsSumStart) -
 
 
-      // текущая стоимость портфеля
-      portfolioSumArr.push(+(currentStock[0].volume * lastStockPrice).toFixed(2))
+        // текущая стоимость портфеля
+        portfolioSumArr.push(+(currentStock[0].volume * lastStockPrice).toFixed(2))
 
       // console.log(portfolioSumArr);
 
@@ -297,6 +306,12 @@ const getInstrumentsPricecAsync = async function (arr) {
         quoteContainer.insertAdjacentHTML("beforeend", liHTML)
 
       }
+
+      totalDelta.textContent = new Intl.NumberFormat('ru-RU').format(totalInvestmentsSum - totalInvestmentsSumStart)
+
+      totalDeltaProcent.textContent = `(${((totalInvestmentsSum - totalInvestmentsSumStart) / (totalInvestmentsSumStart / 100)).toFixed(0)}%)`
+
+
 
     }
 
