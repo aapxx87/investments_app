@@ -1,19 +1,24 @@
 .section-title {
   text-align: center;
   width: 100px;
-  margin: 40px auto;
+  margin: 20px auto;
   font-size: 20px;
 }
 
 
 .news-ul {
   list-style: none;
+  height: 590px;
+  overflow-y: scroll;
 }
 
 .news-ul li {
-  border-top: 1px solid #534d4d;
-  padding-top: 10px;
+  /* border-top: 1px solid #534d4d; */
+  padding: 10px;
+  padding-top: 20px;
   margin-bottom: 20px;
+  background-color: #4D505C;
+  border-radius: 5px;
 }
 
 
@@ -24,11 +29,13 @@
 
 .title {
   font-size: 19px;
-  margin-bottom: 25px;
+  margin-bottom: 11px;
 }
 
 .link {
   text-align: right;
+  display: inline-block;
+  margin-left: 75px;
 }
 
 .link a {
@@ -41,12 +48,13 @@
 
 .description {
   color: rgb(170, 167, 197);
-  font-size: 17px;
+  font-size: 14px;
 }
 
 .pubDate {
   font-size: 12px;
   color: rgb(129, 126, 150);
+  display: inline-block;
 }
 
 .select-stock-input {
