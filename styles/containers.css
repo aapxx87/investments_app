@@ -1,0 +1,29 @@
+/* главный контейнер */
+.container-main {
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+
+.container-switch {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 80px
+
+}
+
+
+.container-portfolio-quotes {
+  display: block;
+}
+
+
+.container-portfolio-news {
+  display: none;
+  padding-bottom: 30px;
+}
+
+.container-select-stock {
+  margin-bottom: 30px;
+}
+

@@ -1,0 +1,50 @@
+.section-title {
+  text-align: center;
+  width: 100px;
+  margin: 40px auto;
+  font-size: 20px;
+}
+
+
+.news-ul {
+  list-style: none;
+}
+
+.news-ul li {
+  border-top: 1px solid rgb(138, 135, 135);
+  padding-top: 10px;
+  margin-bottom: 20px;
+}
+
+
+.title, .description, .link, .pubDate {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+
+.link {
+  text-align: right;
+}
+
+.link a {
+  text-decoration: none;
+  color: rgb(164, 189, 165);
+  font-size: 17px;
+  margin-right: 20px;
+}
+
+
+.description {
+  color: rgb(170, 167, 197);
+}
+
+.pubDate {
+  font-size: 12px;
+  color: rgb(129, 126, 150);
+}
+
