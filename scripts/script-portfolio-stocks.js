@@ -1,3 +1,5 @@
+// import {x} from './script-benchmark-calc'
+
 
 const quoteContainer = document.querySelector('.quote-ul')
 const quoteBox = document.querySelector('.quote-box')
@@ -13,24 +15,17 @@ const totalDeltaProcent = document.querySelector('.pnl-percent')
 
 
 
-
 // ----- Stock part
 const investmentPortfolio = [
   {
-    stockTicker: 'aapl',
+    stockTicker: 'u',
     currency: 'usd',
-    buyDate: '25.02.2020',
-    buyPrice: 73.22,
-    volume: 4,
-    usdRubRateBuyDate: 67,
-  },
-  {
-    stockTicker: 'nvda',
-    currency: 'usd',
-    buyDate: '10.07.2020',
-    buyPrice: 104.35,
-    volume: 4,
-    usdRubRateBuyDate: 73,
+    buyDate: '12.11.2021',
+    buyPrice: 187.2,
+    volume: 1,
+    usdRubRateBuyDate: 72.97,
+    benchMark: 'fxit.me',
+    benchMarkStartPrice: 12082,
   },
   {
     stockTicker: 'rblx',
@@ -39,14 +34,18 @@ const investmentPortfolio = [
     buyPrice: 78.72,
     volume: 2,
     usdRubRateBuyDate: 73.09,
+    benchMark: 'fxit.me',
+    benchMarkStartPrice: 11696,
   },
   {
-    stockTicker: 'u',
+    stockTicker: 'nvda',
     currency: 'usd',
-    buyDate: '12.11.2021',
-    buyPrice: 187.2,
-    volume: 1,
-    usdRubRateBuyDate: 72.97,
+    buyDate: '10.07.2020',
+    buyPrice: 104.35,
+    volume: 4,
+    usdRubRateBuyDate: 73,
+    benchMark: 'fxit.me',
+    benchMarkStartPrice: 7618,
   },
   {
     stockTicker: 'fb',
@@ -55,6 +54,8 @@ const investmentPortfolio = [
     buyPrice: 160.14,
     volume: 1,
     usdRubRateBuyDate: 80.32,
+    benchMark: 'fxit.me',
+    benchMarkStartPrice: 5857,
   },
   {
     stockTicker: 'mtch',
@@ -63,6 +64,18 @@ const investmentPortfolio = [
     buyPrice: 63.99,
     volume: 1,
     usdRubRateBuyDate: 66.57,
+    benchMark: 'fxit.me',
+    benchMarkStartPrice: 5857,
+  },
+  {
+    stockTicker: 'aapl',
+    currency: 'usd',
+    buyDate: '25.02.2020',
+    buyPrice: 73.22,
+    volume: 4,
+    usdRubRateBuyDate: 67,
+    benchMark: 'fxit.me',
+    benchMarkStartPrice: 5993,
   },
   {
     stockTicker: 'tcsg.me',
@@ -72,6 +85,8 @@ const investmentPortfolio = [
     lastPrice: 6848,
     volume: 2,
     usdRubRateBuyDate: 66.57,
+    benchMark: 'fxit.me',
+    benchMarkStartPrice: 5993,
   },
   {
     stockTicker: 'yndx.me',
@@ -81,6 +96,8 @@ const investmentPortfolio = [
     lastPrice: 5612,
     volume: 1,
     usdRubRateBuyDate: 66.57,
+    benchMark: 'fxit.me',
+    benchMarkStartPrice: 5675,
   },
   {
     stockTicker: 'fxit.me',
@@ -90,8 +107,12 @@ const investmentPortfolio = [
     lastPrice: 12382,
     volume: 1,
     usdRubRateBuyDate: 66.57,
+    benchMark: 'fxit.me',
+    benchMarkStartPrice: 5675,
   }
 ]
+
+
 
 
 const portfolioSumArr = []
@@ -140,6 +161,22 @@ const getStocksQuotes = async function (arr) {
 
 
 
+// вытягиваем текущее значение бенчмарка
+const benchmarkLastPrice = async function() {
+  const stockArray = await getStocksQuotes(tickerArr)
+
+  const benchMarkData = stockArray.filter(function(el) {
+    return el.symbol === 'FXIT.ME'
+  })
+
+  const lastBMPrice = benchMarkData[0].regularMarketPrice
+
+  return lastBMPrice
+}
+
+
+
+
 
 
 
@@ -157,6 +194,10 @@ const getInstrumentsPricecAsync = async function (arr) {
 
   // переменная для формироания объекта с данными по балансам
   let totalDataObj
+
+
+  //текущая цена бенчмарка
+  const lastBMPrice = await benchmarkLastPrice()
 
 
 
@@ -183,10 +224,10 @@ const getInstrumentsPricecAsync = async function (arr) {
     const pnl = lastStockPrice - currentStock[0].buyPrice
 
 
-    if(currentStock[0].currency === 'usd') {
+    if (currentStock[0].currency === 'usd') {
       portfolioSumArr.push(+(currentStock[0].volume * lastStockPrice) * rubUsdRate).toFixed(2)
       portfolioSumStartArr.push(currentStock[0].buyPrice * currentStock[0].volume * currentStock[0].usdRubRateBuyDate)
-    } else if(currentStock[0].currency === 'rub') {
+    } else if (currentStock[0].currency === 'rub') {
       portfolioSumArr.push(+(currentStock[0].volume * lastStockPrice).toFixed(2))
       portfolioSumStartArr.push(currentStock[0].buyPrice * currentStock[0].volume)
     }
@@ -200,16 +241,23 @@ const getInstrumentsPricecAsync = async function (arr) {
     }, 0).toFixed(2)
 
 
+    // считаем процентное изменение бенчмарка
+    const benchmarkLastPrice = (lastBMPrice - currentStock[0].benchMarkStartPrice)/(currentStock[0].benchMarkStartPrice/100)
+
+
     // формируем объект с данными, которые передадим в компоненту для формирвования HTML по каждой акции
     const stockDataObj = {
       pnl: pnl,
+      currency: currentStock[0].currency,
       ticker: currentStock[0].stockTicker.toUpperCase(),
       volume: currentStock[0].volume,
-      buyPrice: currentStock[0].buyPrice,
-      lastPrice: lastStockPrice.toFixed(2),
-      totalVolumePrice: (currentStock[0].volume * lastStockPrice).toFixed(2),
-      deltaMoney: (pnl * currentStock[0].volume).toFixed(2),
+      buyPrice: new Intl.NumberFormat('ru-RU').format(currentStock[0].buyPrice),
+      lastPrice: new Intl.NumberFormat('ru-RU').format(lastStockPrice.toFixed(2)),
+      totalVolumePrice: new Intl.NumberFormat('ru-RU').format((currentStock[0].volume * lastStockPrice).toFixed(2)),
+      deltaMoney: new Intl.NumberFormat('ru-RU').format((pnl * currentStock[0].volume).toFixed(2)),
       deltaPercent: ((lastStockPrice - currentStock[0].buyPrice) / (currentStock[0].buyPrice / 100)).toFixed(2),
+      benchMarkDeltaPercent: benchmarkLastPrice.toFixed(0),
+      benchMarkName: "FXIT.ME",
     }
 
     // формируем объект с данными, которые передадим в компоненту для формирвования итоговых балансов
@@ -241,11 +289,13 @@ const componentStockData = function (obj) {
           <div class="quote-box ${obj.pnl > 0 ? "profit" : "loss"}">
             <div class="stock-data">
               <p class="stock-name">${obj.ticker} <span>(${obj.volume} шт.)</span></p>
-              <p class="stock-amount">${obj.buyPrice}$ -> <span>${obj.lastPrice}$</span> </p>
+              <p class="stock-amount">${obj.buyPrice} ${obj.currency === 'usd' ? "$" : "Р"} -> <span>${obj.lastPrice} ${obj.currency === 'usd' ? "$" : "Р"}</span> </p>
+              <p class="bmName">${obj.benchMarkName}</p>
             </div>
             <div class="stock-price">
-              <p class="stock-total-sum-price">${obj.totalVolumePrice} $</p>
-              <p class="stock-price-delta">${obj.deltaMoney}$ <span>(${obj.deltaPercent}%)</span></p>
+              <p class="stock-total-sum-price">${obj.totalVolumePrice} ${obj.currency === 'usd' ? "$" : "Р"}</p>
+              <p class="stock-price-delta">${obj.deltaMoney} ${obj.currency === 'usd' ? "$" : "Р"} <span>(${obj.deltaPercent}%)</span></p>
+              <p class="bm-delta-percent">${obj.benchMarkDeltaPercent} %</p>
             </div>
           </div>
         </li>
@@ -275,6 +325,8 @@ const componentTotalBalances = function (obj) {
 
 
 getInstrumentsPricecAsync(tickerArrOnlyStocks)
+
+
 
 
 
