@@ -5,27 +5,10 @@
 }
 
 
-.container-switch {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 80px
-
-}
-
-
 .container-portfolio-quotes {
   display: block;
   padding-bottom: 20px;
 }
 
 
-.container-portfolio-news {
-  display: none;
-  padding-bottom: 20px;
-}
-
-.container-select-stock {
-  margin-bottom: 30px;
-  text-align: center;
-}
 

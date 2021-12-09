@@ -1,0 +1,29 @@
+/* Контейнер с Заголовком по суммарным балансам */
+.total-balances {
+    max-width: 230px;
+    margin: 40px auto;
+}
+
+.start-current-balance, .pnl-box {
+    display: flex;
+    justify-content: space-around;
+}
+
+.start-current-balance {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.totalSumStart {
+    font-size: 16px;
+    color: rgb(189, 186, 186);
+}
+
+.totalSumLast {
+    font-size: 20px;
+}
+
+.pnl-box {
+    color: rgb(189, 186, 186);
+}
